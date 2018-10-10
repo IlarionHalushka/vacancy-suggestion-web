@@ -11,10 +11,15 @@ app.use( bodyParser.json() );
 app.use(cors({ origin: '*' }));
 
 app.post('/getBestVacancies', async (req, res) => {
-  console.log(req.body.data);
-  const response = await getBestVacancies(req.body.data);
-
-  res.send(200, response);
+  let response;
+  try {
+    console.log(req.body.data);
+    response = await getBestVacancies(req.body.data);
+    res.send(200, response);
+  }
+  catch(e) {
+    console.error(e);
+  }
 });
 
 const server = app.listen(serverPort, function() {

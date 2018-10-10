@@ -43,6 +43,7 @@ const getBestVacancies = async function getBestVacancies({
         }
       }
     }
+    console.log(counter)
     if (counter) {
       const city = await City.findOne(
         { _id: vacancies[i].cityId },
@@ -66,6 +67,7 @@ const getBestVacancies = async function getBestVacancies({
   }
   counters = counters.sort(predicateBy("counter"));
   counters.length = counters.length > 20 ? 20 : counters.length;
+  console.log(counters)
   return counters;
 };
 
