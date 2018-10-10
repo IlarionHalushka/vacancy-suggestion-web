@@ -48,8 +48,7 @@ const parseAllVacanciesList = async () => {
 
 const parseDetailOfEachVacancy = async ids => {
   let vacanciesArray = [];
-  // TODO: remove the next line
-  ids.length = 5;
+
   for await (const id of ids) {
     console.log("parsing", id);
 
@@ -114,7 +113,7 @@ const saveVacancyInDB = async vacancy => {
   });
   // translate vacancy description
   console.log("vacancyDescription", vacancy.description);
-  vacancy.description = await translateWithTimeout(vacancy.description, 20000);
+  vacancy.description = await translateWithTimeout(vacancy.description, 30000);
   console.log("vacancy", vacancy);
   console.log("vacancyDescription", vacancy.description);
   vacancy.description = vacancy.description.toLowerCase();
