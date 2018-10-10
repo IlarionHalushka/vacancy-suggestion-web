@@ -3,3 +3,18 @@ npm run webpack-devserver
 npm run server
 
 mongod
+
+before running specify credentials for mongodb connection
+exports USER=
+exports PASSWORD=
+
+
+on gcloud:
+cd /Vacancy-Suggestion
+git clone https://github.com/IlarionHalushka/Vacancy-Suggestion.git
+export USER=
+export PASSWORD=
+npm install
+npm run build
+gcloud app deploy
+gcloud app logs tail -s default

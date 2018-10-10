@@ -53,7 +53,7 @@ const getBestVacancies = async function getBestVacancies({
         { name: 1, externalId: 1 }
       );
       counters.push({
-        vacancyId: vacancies[i].idExternal,
+        vacancyId: vacancies[i].externalId,
         vacancyName: vacancies[i].name,
         companyId: vacancies[i].companyId,
         companyExternalId: company.externalId,

@@ -48,6 +48,7 @@ const parseAllVacanciesList = async () => {
 
 const parseDetailOfEachVacancy = async ids => {
   let vacanciesArray = [];
+  // TODO: remove the next line
   ids.length = 5;
   for await (const id of ids) {
     console.log("parsing", id);
@@ -80,7 +81,7 @@ const saveCompaniesInDB = async vacancy => {
         contactPerson: vacancy.contactPerson,
         contactPhone: vacancy.contactPhone,
         contactURL: vacancy.contactURL,
-        externalId: vacancy.companyId
+        externalId: vacancy.notebookId
       }
     },
     { upsert: true }
@@ -119,12 +120,12 @@ const saveVacancyInDB = async vacancy => {
   vacancy.description = vacancy.description.toLowerCase();
   // save vacancy in DB, avoiding duplicates
   await Vacancy.updateOne(
-    { idExternal: vacancy.id },
+    { externalId: vacancy.id },
     {
       $set: {
         name: vacancy.name,
         description: vacancy.description,
-        idExternal: vacancy.id,
+        externalId: vacancy.id,
         companyId: companyId,
         cityId: cityId,
         dateExternal: vacancy.date

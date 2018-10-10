@@ -8,7 +8,7 @@ const VacancySchema = new mongoose.Schema(
       description: {
         type: String
       },
-      idExternal: {
+      externalId: {
         type: Number
       },
       cityId: {
@@ -38,7 +38,7 @@ export const publicFields = [
   'updatedAt',
   "name",
   "description",
-  "idExternal",
+  "externalId",
   "cityId",
   "companyId",
   "requirements",
