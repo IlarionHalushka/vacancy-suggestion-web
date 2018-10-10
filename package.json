@@ -5,10 +5,9 @@
   "main": "index.js",
   "scripts": {
     "server": "nodemon server/app.js --exec babel-node --presets es2015,stage-2",
-    "start": "node server/app.js --exec babel-node --presets es2015,stage-2",
     "webpack-devserver": "webpack-dev-server --debug --hot --devtool eval-source-map --output-pathinfo --watch --colors --inline --content-base public --port 8090 --host 0.0.0.0",
     "build": "babel server -d dist --presets es2015,stage-2",
-    "serve": "node dist/app.js",
+    "start": "node dist/app.js",
     "cron": "node dist/scheduledTasks/cron.js"
   },
   "author": "Larry",
