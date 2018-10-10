@@ -11,8 +11,21 @@
     "cron": "node dist/scheduledTasks/cron.js",
     "start": "npm run server-prod"
   },
+  "engines": {
+    "node": ">=8"
+  },
+  "cloud-repo-tools": {
+    "test": {
+      "app": {
+        "msg": "Event tracked."
+      }
+    },
+    "requiresKeyFile": false,
+    "requiresProjectId": false
+  },
   "author": "Larry",
   "dependencies": {
+    "@google-cloud/nodejs-repo-tools": "2.2.1",
     "async": "^2.6.1",
     "axios": "^0.9.1",
     "babel-core": "^6.26.3",
