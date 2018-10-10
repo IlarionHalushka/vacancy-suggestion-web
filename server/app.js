@@ -12,9 +12,10 @@ app.use(cors({ origin: '*' }));
 
 app.post('/getBestVacancies', async (req, res) => {
   console.log(req.body.data);
-  const response = await getBestVacancies(req.body.data);
+  //const response = await getBestVacancies(req.body.data);
 
-  res.send(200, response);
+  //res.send(200, response);
+  res.send(200).json({request: 'success'});
 });
 
 const server = app.listen(serverPort, function() {
