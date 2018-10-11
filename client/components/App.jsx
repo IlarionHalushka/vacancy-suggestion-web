@@ -30,7 +30,7 @@ const App = React.createClass({
 
     (async () => {
       const { data } = await axios({
-        url: "http://localhost:8080/getBestVacancies",
+        url: "https://vacancies-suggestions-219018.appspot.com/getBestVacancies",
         method: "POST",
         data: { data: e }
       });
