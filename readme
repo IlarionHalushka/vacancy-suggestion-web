@@ -14,8 +14,8 @@ cd Vacancy-Suggestion
 cd Vacancy-web
 git clone https://github.com/IlarionHalushka/Vacancy-Suggestion.git
 git pull origin master
-export USER=larry
-export PASSWORD=amalarry4
+export USER=
+export PASSWORD=]
 export NODE_ENV=production
 npm install
 npm run build
