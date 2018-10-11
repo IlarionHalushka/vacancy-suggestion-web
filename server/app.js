@@ -22,9 +22,9 @@ app.post('/getBestVacancies', async (req, res) => {
   }
 });
 
-const server = app.listen(serverPort, function() {
+/*const server = app.listen(serverPort, function() {
     console.log(`Server is up and running on port ${serverPort}`);
-});
+});*/
 
 const server = app.listen(serverPort, () => {
   let host = 'localhost';
