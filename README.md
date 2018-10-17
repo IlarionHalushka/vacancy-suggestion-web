@@ -1,5 +1,5 @@
 ## Vacancies-Suggestions Front-end part of application
-https://vacancies-219107.appspot.com
+https://vacancies-219107.appspot.com    (deployed using Google Cloud App Engine)
 
 **Technologies used:**
 
