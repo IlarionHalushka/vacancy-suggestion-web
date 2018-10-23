@@ -117,7 +117,10 @@ const App = React.createClass({
         <Provider store={store}>
           <div>
             <h2 className="App__header">
-              Search for vacancies that match your skills
+              Hi, Test Engineer!
+            </h2>
+            <h2 className="App__header">
+              Search for vacancies that match your skills.
             </h2>
             <FieldArraysForm onSubmit={this.handleGetBestVacancies} />
           </div>
