@@ -7,6 +7,7 @@ import { Values } from "redux-form-website-template";
 
 import FieldArraysForm from "./Form-field/FieldArraysForm";
 
+import { apiPrefix } from '../config/enviroment';
 import "./App.less";
 
 import axios from "axios";
@@ -30,7 +31,7 @@ const App = React.createClass({
 
     (async () => {
       const { data } = await axios({
-        url: "https://vacancies-suggestions-219018.appspot.com/getBestVacancies",
+        url: `${apiPrefix}/getBestVacancies`,
         method: "POST",
         data: { data: e }
       });

@@ -1,11 +1,10 @@
 module.exports = {
   mongo: {
-    //uri: 'mongodb://localhost:27017/vacanciesSuggestion-dev',
-    uri: `mongodb://${process.env.USER}:${process.env.PASSWORD}@ds125953.mlab.com:25953/vacancies-suggestions`,
+    uri: "mongodb://localhost:27017/vacanciesSuggestion-dev"
   },
   serverPort: 8090,
-  apiPrefix: "https://vacancies-suggestions-219018.appspot.com",
-  keyWordsTop:  [
+  apiPrefix: "http://localhost:8080",
+  keyWordsTop: [
     "what we expect from our candidate",
     "requirements:",
     "требования:",
