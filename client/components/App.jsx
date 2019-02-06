@@ -26,48 +26,31 @@ const App = React.createClass({
     };
   },
 
-  handleGetBestVacancies(e) {
-    let idsArray = [];
-    let dataArray = [];
+  async handleGetBestVacancies(e) {
     this.setState({ loading: true });
+
     try {
-      (async () => {
-        const { data } = await axios({
-          url: `${apiPrefix}/getBestVacancies`,
-          method: "POST",
-          data: { data: e }
-        });
-        for (let i = 0; i < data.length; i++) {
-          idsArray.push(data[i].vacancyId);
-        }
+      // TODO: move request to api
+      // fetch vacancies
+      const { data: vacancies } = await axios({
+        url: `${apiPrefix}/getBestVacancies`,
+        method: "POST",
+        data: { data: e }
+      });
 
-        this.setState({ bestVacancies: data });
-        if (data.length <= 10) {
-          this.setState({ pageSize: data.length, showNavigation: false });
-        } else {
-          this.setState({ pageSize: 10, showNavigation: true });
-        }
+      // generate link to rabota.ua
+      const dataArray = vacancies.map(vacancy => ({
+        ...vacancy,
+        description: `https://rabota.ua/company${
+          vacancy.companyExternalId
+        }/vacancy${vacancy.vacancyId}`
+      }));
 
-        let vacancies = this.state.bestVacancies;
-        for (let i = 0; i < idsArray.length; i++) {
-          let data = {
-            vacancyId: vacancies[i].vacancyId,
-            counter: vacancies[i].counter,
-            companyName: vacancies[i].companyName,
-            companyId: vacancies[i].companyId,
-            cityName: vacancies[i].cityName,
-            vacancyName: vacancies[i].vacancyName,
-            description: `https://rabota.ua/company${
-              vacancies[i].companyExternalId
-            }/vacancy${vacancies[i].vacancyId}`
-          };
-
-          dataArray.push(data);
-          this.setState({ bestVacancies: dataArray });
-          this.setState({ loading: false, tableStatus: "vacancies" });
-        }
-        return dataArray;
-      })();
+      this.setState({ bestVacancies: dataArray });
+      this.setState({ loading: false, tableStatus: "vacancies" });
+      vacancies.length <= 10
+        ? this.setState({ pageSize: vacancies.length, showNavigation: false })
+        : this.setState({ pageSize: 10, showNavigation: true });
     } catch (e) {
       console.error(e);
       this.setState({ loading: false, tableStatus: "vacancies" });
@@ -80,12 +63,11 @@ const App = React.createClass({
 
   async handleGetQualifications() {
     this.setState({ loading: true });
-
+    // TODO: move request to api
     const { data } = await axios({
       url: `${apiPrefix}/qualifications`,
       method: "GET"
     });
-    console.log(data[0]);
 
     this.setState({ qualifications: data });
     this.setState({
