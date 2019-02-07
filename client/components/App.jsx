@@ -7,10 +7,9 @@ import { Values } from "redux-form-website-template";
 
 import FieldArraysForm from "./Form-field/FieldArraysForm";
 
-import { apiPrefix } from "../config/enviroment";
+import api from "../api";
 import "./App.less";
 
-import axios from "axios";
 import ReactTable from "react-table";
 import store from "./Form-field/store";
 
@@ -30,13 +29,7 @@ const App = React.createClass({
     this.setState({ loading: true });
 
     try {
-      // TODO: move request to api
-      // fetch vacancies
-      const { data: vacancies } = await axios({
-        url: `${apiPrefix}/getBestVacancies`,
-        method: "POST",
-        data: { data: e }
-      });
+      const { data: vacancies } = await api.getVacancies(e);
 
       // generate link to rabota.ua
       const dataArray = vacancies.map(vacancy => ({
@@ -63,11 +56,7 @@ const App = React.createClass({
 
   async handleGetQualifications() {
     this.setState({ loading: true });
-    // TODO: move request to api
-    const { data } = await axios({
-      url: `${apiPrefix}/qualifications`,
-      method: "GET"
-    });
+    const { data } = await api.getQualifications();
 
     this.setState({ qualifications: data });
     this.setState({
