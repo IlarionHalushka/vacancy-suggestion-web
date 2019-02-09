@@ -8,6 +8,7 @@ import { Values } from "redux-form-website-template";
 import FieldArraysForm from "./Form-field/FieldArraysForm";
 
 import api from "../api";
+import tableStatuses from '../config/tableStatuses' ;
 import "./App.less";
 
 import ReactTable from "react-table";
@@ -77,7 +78,7 @@ const App = React.createClass({
       pageSize: 10,
       showNavigation: false,
       loading: false,
-      tableStatus: "vacancies"
+      tableStatus: tableStatuses.VACANCIES
     };
   },
 
@@ -96,13 +97,13 @@ const App = React.createClass({
       }));
 
       this.setState({ bestVacancies: dataArray });
-      this.setState({ loading: false, tableStatus: "vacancies" });
+      this.setState({ loading: false, tableStatus: tableStatuses.VACANCIES });
       vacancies.length <= 10
         ? this.setState({ pageSize: vacancies.length, showNavigation: false })
         : this.setState({ pageSize: 10, showNavigation: true });
     } catch (e) {
       console.error(e);
-      this.setState({ loading: false, tableStatus: "vacancies" });
+      this.setState({ loading: false, tableStatus: tableStatuses.VACANCIES });
     }
   },
 
@@ -113,8 +114,9 @@ const App = React.createClass({
     this.setState({ qualifications: data });
     this.setState({
       loading: false,
-      tableStatus: "qualifications",
-      showNavigation: true
+      tableStatus: tableStatuses.QUALIFICATIONS,
+      showNavigation: true,
+      pageSize: 10
     });
   },
 
@@ -138,12 +140,12 @@ const App = React.createClass({
         <ReactTable
           key={this.state.pageSize}
           data={
-            this.state.tableStatus === "vacancies"
+            this.state.tableStatus === tableStatuses.VACANCIES
               ? this.state.bestVacancies
               : this.state.qualifications
           }
           columns={
-            this.state.tableStatus === "vacancies"
+            this.state.tableStatus === tableStatuses.VACANCIES
               ? columnsVacancies
               : columnsQualifications
           }
