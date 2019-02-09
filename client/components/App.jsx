@@ -8,7 +8,7 @@ import { Values } from "redux-form-website-template";
 import FieldArraysForm from "./Form-field/FieldArraysForm";
 
 import api from "../api";
-import tableStatuses from '../config/tableStatuses' ;
+import tableStatuses from "../config/tableStatuses";
 import "./App.less";
 
 import ReactTable from "react-table";
@@ -88,19 +88,23 @@ const App = React.createClass({
     try {
       const { data: vacancies } = await api.getVacancies(e);
 
-      // generate link to rabota.ua
-      const dataArray = vacancies.map(vacancy => ({
+      // generate link to vacancy on rabota.ua
+      const vacanciesWithDescription = vacancies.map(vacancy => ({
         ...vacancy,
         description: `https://rabota.ua/company${
           vacancy.companyExternalId
         }/vacancy${vacancy.vacancyId}`
       }));
 
-      this.setState({ bestVacancies: dataArray });
-      this.setState({ loading: false, tableStatus: tableStatuses.VACANCIES });
+      const nextState = {
+        showNavigation: false,
+        bestVacancies: vacanciesWithDescription,
+        loading: false,
+        tableStatus: tableStatuses.VACANCIES
+      };
       vacancies.length <= 10
-        ? this.setState({ pageSize: vacancies.length, showNavigation: false })
-        : this.setState({ pageSize: 10, showNavigation: true });
+        ? this.setState({ pageSize: vacancies.length, ...nextState })
+        : this.setState({ pageSize: 10, ...nextState });
     } catch (e) {
       console.error(e);
       this.setState({ loading: false, tableStatus: tableStatuses.VACANCIES });
