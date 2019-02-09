@@ -113,15 +113,24 @@ const App = React.createClass({
 
   async handleGetQualifications() {
     this.setState({ loading: true });
-    const { data } = await api.getQualifications();
 
-    this.setState({ qualifications: data });
-    this.setState({
-      loading: false,
-      tableStatus: tableStatuses.QUALIFICATIONS,
-      showNavigation: true,
-      pageSize: 10
-    });
+    try {
+      const { data } = await api.getQualifications();
+
+      this.setState({
+        qualifications: data,
+        loading: false,
+        tableStatus: tableStatuses.QUALIFICATIONS,
+        showNavigation: true,
+        pageSize: 10
+      });
+    } catch (e) {
+      console.error(e);
+      this.setState({
+        loading: false,
+        tableStatus: tableStatuses.QUALIFICATIONS
+      });
+    }
   },
 
   render() {
