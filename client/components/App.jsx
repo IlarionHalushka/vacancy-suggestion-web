@@ -13,6 +13,62 @@ import "./App.less";
 import ReactTable from "react-table";
 import store from "./Form-field/store";
 
+const columnsVacancies = [
+  {
+    Header: "VacancyId",
+    accessor: "vacancyId",
+    minWidth: 25
+  },
+  {
+    Header: "Matches",
+    accessor: "counter",
+    minWidth: 25
+  },
+  {
+    Header: "Title",
+    accessor: "vacancyName",
+    minWidth: 70
+  },
+  {
+    Header: "City",
+    accessor: "cityName",
+    minWidth: 30
+  },
+  {
+    Header: "Company",
+    accessor: "companyName",
+    minWidth: 50
+  },
+  {
+    Header: "Link",
+    accessor: "description",
+    minWidth: 80,
+    Cell: props => (
+      <a target="_tab" href={props.value}>
+        {props.value}
+      </a>
+    )
+  }
+];
+
+const columnsQualifications = [
+  {
+    Header: "Qualification",
+    accessor: "value",
+    minWidth: 50
+  },
+  {
+    Header: "Section",
+    accessor: "section",
+    minWidth: 50
+  },
+  {
+    Header: "Popularity",
+    accessor: "counter",
+    minWidth: 50
+  }
+];
+
 const App = React.createClass({
   getInitialState() {
     return {
@@ -50,10 +106,6 @@ const App = React.createClass({
     }
   },
 
-  handleSkillsInputChange(event) {
-    this.setState({ skills: event.target.value });
-  },
-
   async handleGetQualifications() {
     this.setState({ loading: true });
     const { data } = await api.getQualifications();
@@ -67,62 +119,6 @@ const App = React.createClass({
   },
 
   render() {
-    const columnsVacancies = [
-      {
-        Header: "VacancyId",
-        accessor: "vacancyId",
-        minWidth: 25
-      },
-      {
-        Header: "Matches",
-        accessor: "counter",
-        minWidth: 25
-      },
-      {
-        Header: "Title",
-        accessor: "vacancyName",
-        minWidth: 70
-      },
-      {
-        Header: "City",
-        accessor: "cityName",
-        minWidth: 30
-      },
-      {
-        Header: "Company",
-        accessor: "companyName",
-        minWidth: 50
-      },
-      {
-        Header: "Link",
-        accessor: "description",
-        minWidth: 80,
-        Cell: props => (
-          <a target="_tab" href={props.value}>
-            {props.value}
-          </a>
-        )
-      }
-    ];
-
-    const columnsQualifications = [
-      {
-        Header: "Qualification",
-        accessor: "value",
-        minWidth: 50
-      },
-      {
-        Header: "Section",
-        accessor: "section",
-        minWidth: 50
-      },
-      {
-        Header: "Popularity",
-        accessor: "counter",
-        minWidth: 50
-      }
-    ];
-
     return (
       <div className="App">
         <Provider store={store}>
