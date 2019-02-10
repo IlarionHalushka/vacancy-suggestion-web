@@ -11,6 +11,8 @@ import api from "../api";
 import tableStatuses from "../config/tableStatuses";
 import "./App.less";
 
+import "./Appsfda";
+
 import ReactTable from "react-table";
 import store from "./Form-field/store";
 
@@ -42,7 +44,7 @@ const columnsVacancies = [
   },
   {
     Header: "Link",
-    accessor: "description",
+    accessor: 'description',
     minWidth: 80,
     Cell: props => (
       <a target="_tab" href={props.value}>
