@@ -1,75 +1,73 @@
-import React from "react";
+import React from 'react';
 
-import "react-table/react-table.css";
-import { Provider } from "react-redux";
+import 'react-table/react-table.css';
+import { Provider } from 'react-redux';
 
-import { Values } from "redux-form-website-template";
+import { Values } from 'redux-form-website-template';
 
-import FieldArraysForm from "./Form-field/FieldArraysForm";
+import FieldArraysForm from './Form-field/FieldArraysForm';
 
-import api from "../api";
-import tableStatuses from "../config/tableStatuses";
-import "./App.less";
+import api from '../api';
+import tableStatuses from '../config/tableStatuses';
+import './App.less';
 
-import "./Appsfda";
-
-import ReactTable from "react-table";
-import store from "./Form-field/store";
+import ReactTable from 'react-table';
+import store from './Form-field/store';
 
 const columnsVacancies = [
   {
-    Header: "VacancyId",
-    accessor: "vacancyId",
-    minWidth: 25
+    Header: 'VacancyId',
+    accessor: 'vacancyId',
+    minWidth: 25,
   },
   {
-    Header: "Matches",
-    accessor: "counter",
-    minWidth: 25
+    Header: 'Matches',
+    accessor: 'counter',
+    minWidth: 25,
   },
   {
-    Header: "Title",
-    accessor: "vacancyName",
-    minWidth: 70
+    Header: 'Title',
+    accessor: 'vacancyName',
+    minWidth: 70,
   },
   {
-    Header: "City",
-    accessor: "cityName",
-    minWidth: 30
+    Header: 'City',
+    accessor: 'cityName',
+    minWidth: 30,
   },
   {
-    Header: "Company",
-    accessor: "companyName",
-    minWidth: 50
+    Header: 'Company',
+    accessor: 'companyName',
+    minWidth: 50,
   },
   {
-    Header: "Link",
+    Header: 'Link',
     accessor: 'description',
     minWidth: 80,
     Cell: props => (
       <a target="_tab" href={props.value}>
         {props.value}
       </a>
-    )
-  }
+    ),
+  },
 ];
 
 const columnsQualifications = [
   {
-    Header: "Qualification",
-    accessor: "value",
-    minWidth: 50
+    Header: 'Qualification',
+    accessor: 'value',
+    minWidth: 50,
   },
   {
-    Header: "Section",
-    accessor: "section",
-    minWidth: 50
+    Header: 'Section',
+    accessor: 'section',
+    minWidth: 50,
   },
   {
-    Header: "Popularity",
-    accessor: "counter",
-    minWidth: 50
-  }
+    Header: 'Popularity',
+    accessor: 'counter',
+    minWidth: 50,
+  },
 ];
 
 const App = React.createClass({
@@ -80,7 +78,7 @@ const App = React.createClass({
       pageSize: 10,
       showNavigation: false,
       loading: false,
-      tableStatus: tableStatuses.VACANCIES
+      tableStatus: tableStatuses.VACANCIES,
     };
   },
 
@@ -93,16 +91,16 @@ const App = React.createClass({
       // generate link to vacancy on rabota.ua
       const vacanciesWithDescription = vacancies.map(vacancy => ({
         ...vacancy,
-        description: `https://rabota.ua/company${
-          vacancy.companyExternalId
-        }/vacancy${vacancy.vacancyId}`
+        description: `https://rabota.ua/company${vacancy.companyExternalId}/vacancy${
+          vacancy.vacancyId
+        }`,
       }));
 
       const nextState = {
         showNavigation: false,
         bestVacancies: vacanciesWithDescription,
         loading: false,
-        tableStatus: tableStatuses.VACANCIES
+        tableStatus: tableStatuses.VACANCIES,
       };
       vacancies.length <= 10
         ? this.setState({ pageSize: vacancies.length, ...nextState })
@@ -124,13 +122,13 @@ const App = React.createClass({
         loading: false,
         tableStatus: tableStatuses.QUALIFICATIONS,
         showNavigation: true,
-        pageSize: 10
+        pageSize: 10,
       });
     } catch (e) {
       console.error(e);
       this.setState({
         loading: false,
-        tableStatus: tableStatuses.QUALIFICATIONS
+        tableStatus: tableStatuses.QUALIFICATIONS,
       });
     }
   },
@@ -141,9 +139,7 @@ const App = React.createClass({
         <Provider store={store}>
           <div>
             <h2 className="App__header">Hi, Test Engineer!</h2>
-            <h2 className="App__header">
-              Search for vacancies that match your skills.
-            </h2>
+            <h2 className="App__header">Search for vacancies that match your skills.</h2>
             <FieldArraysForm onSubmit={this.handleGetBestVacancies} />
           </div>
         </Provider>
@@ -173,7 +169,7 @@ const App = React.createClass({
         />
       </div>
     );
-  }
+  },
 });
 
 export default App;
