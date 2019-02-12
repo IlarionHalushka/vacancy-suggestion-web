@@ -1,18 +1,14 @@
-import React from 'react';
-
+import React, { Component } from 'react';
+import ReactTable from 'react-table';
 import 'react-table/react-table.css';
+import './App.less';
+
 import { Provider } from 'react-redux';
-
-import { Values } from 'redux-form-website-template';
-
 import FieldArraysForm from './Form-field/FieldArraysForm';
+import store from './Form-field/store';
 
 import api from '../api';
 import tableStatuses from '../config/tableStatuses';
-import './App.less';
-
-import ReactTable from 'react-table';
-import store from './Form-field/store';
 
 const columnsVacancies = [
   {
@@ -44,9 +40,9 @@ const columnsVacancies = [
     Header: 'Link',
     accessor: 'description',
     minWidth: 80,
-    Cell: props => (
-      <a target="_tab" href={props.value}>
-        {props.value}
+    Cell: ({ value }) => (
+      <a target="_tab" href={value}>
+        {value}
       </a>
     ),
   },
@@ -70,9 +66,10 @@ const columnsQualifications = [
   },
 ];
 
-const App = React.createClass({
-  getInitialState() {
-    return {
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
       bestVacancies: [],
       qualifications: [],
       pageSize: 10,
@@ -80,7 +77,7 @@ const App = React.createClass({
       loading: false,
       tableStatus: tableStatuses.VACANCIES,
     };
-  },
+  }
 
   async handleGetBestVacancies(e) {
     this.setState({ loading: true });
@@ -109,7 +106,7 @@ const App = React.createClass({
       console.error(e);
       this.setState({ loading: false, tableStatus: tableStatuses.VACANCIES });
     }
-  },
+  }
 
   async handleGetQualifications() {
     this.setState({ loading: true });
@@ -131,7 +128,7 @@ const App = React.createClass({
         tableStatus: tableStatuses.QUALIFICATIONS,
       });
     }
-  },
+  }
 
   render() {
     return (
@@ -169,7 +166,7 @@ const App = React.createClass({
         />
       </div>
     );
-  },
-});
+  }
+}
 
 export default App;
