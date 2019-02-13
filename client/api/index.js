@@ -1,20 +1,20 @@
-import axios from "axios";
+import axios from 'axios';
 
-import { apiPrefix } from "../config/enviroment";
+import { apiPrefix } from '../config/enviroment';
 
 export default {
   getQualifications() {
     return axios({
       url: `${apiPrefix}/qualifications`,
-      method: "GET"
+      method: 'GET',
     });
   },
 
-  getVacancies(e) {
+  getVacancies(data) {
     return axios({
       url: `${apiPrefix}/getBestVacancies`,
-      method: "POST",
-      data: { data: e }
+      method: 'POST',
+      data,
     });
-  }
+  },
 };
