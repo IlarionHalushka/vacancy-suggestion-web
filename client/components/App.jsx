@@ -98,12 +98,12 @@ class App extends Component {
         bestVacancies: vacanciesWithDescription,
         loading: false,
         tableStatus: tableStatuses.VACANCIES,
+        pageSize: vacancies.length <= 10 ? vacancies.length : 10,
       };
-      vacancies.length <= 10
-        ? this.setState({ pageSize: vacancies.length, ...nextState })
-        : this.setState({ pageSize: 10, ...nextState });
-    } catch (e) {
-      console.error(e);
+
+      this.setState(nextState);
+    } catch (err) {
+      console.error(err);
       this.setState({ loading: false, tableStatus: tableStatuses.VACANCIES });
     }
   }
