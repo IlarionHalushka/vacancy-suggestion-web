@@ -13,7 +13,6 @@ switch (process.env.ENVIRONMENT) {
     break;
   case 'production':
     environmentPath = production;
-    console.log("PRODUCTION CONFIG")
     break;
   default:
     environmentPath = development;
