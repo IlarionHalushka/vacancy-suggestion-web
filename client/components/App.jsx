@@ -9,6 +9,7 @@ import store from './Form-field/store';
 
 import api from '../api';
 import tableStatuses from '../config/tableStatuses';
+import { defaultPageSize } from '../config/enviroment';
 
 const columnsVacancies = [
   {
@@ -72,7 +73,7 @@ class App extends Component {
     this.state = {
       bestVacancies: [],
       qualifications: [],
-      pageSize: 10,
+      pageSize: defaultPageSize,
       showNavigation: false,
       loading: false,
       tableStatus: tableStatuses.VACANCIES,
@@ -98,7 +99,7 @@ class App extends Component {
         bestVacancies: vacanciesWithDescription,
         loading: false,
         tableStatus: tableStatuses.VACANCIES,
-        pageSize: vacancies.length <= 10 ? vacancies.length : 10,
+        pageSize: vacancies.length <= defaultPageSize ? vacancies.length : defaultPageSize,
       };
 
       this.setState(nextState);
@@ -119,10 +120,10 @@ class App extends Component {
         loading: false,
         tableStatus: tableStatuses.QUALIFICATIONS,
         showNavigation: true,
-        pageSize: 10,
+        pageSize: defaultPageSize,
       });
-    } catch (e) {
-      console.error(e);
+    } catch (err) {
+      console.error(err);
       this.setState({
         loading: false,
         tableStatus: tableStatuses.QUALIFICATIONS,
