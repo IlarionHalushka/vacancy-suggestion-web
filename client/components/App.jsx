@@ -134,10 +134,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <h2 className="App__header">Hi, Test Engineer!</h2>
+        <h2 className="App__header">Search for vacancies that match your skills.</h2>
         <Provider store={store}>
           <div>
-            <h2 className="App__header">Hi, Test Engineer!</h2>
-            <h2 className="App__header">Search for vacancies that match your skills.</h2>
+
             <FieldArraysForm onSubmit={this.handleGetBestVacancies} />
           </div>
         </Provider>
