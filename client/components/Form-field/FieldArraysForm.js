@@ -3,7 +3,6 @@ import { Field, FieldArray, reduxForm } from 'redux-form';
 import validate from './validate';
 import './FieldArraysForm.less';
 
-
 const renderField = ({ input, label, type, meta: { touched, error } }) => (
   <div>
     <label>{label}</label>
@@ -30,13 +29,16 @@ const renderMembers = ({ fields, meta: { touched, error, submitFailed } }) => (
             type="button"
             title="Remove Skill"
             onClick={() => fields.remove(index)}
-          >x</button>
+          >
+            x
+          </button>
         </div>
-
       </div>
     ))}
     <div>
-      <button className="addSkillBtn" type="button" onClick={() => fields.push({})}>Add Skill</button>
+      <button className="addSkillBtn" type="button" onClick={() => fields.push({})}>
+        Add Skill
+      </button>
       {(touched || submitFailed) && error && <span>{error}</span>}
     </div>
   </ul>
@@ -49,8 +51,15 @@ const FieldArraysForm = props => {
       <FieldArray name="skills" component={renderMembers} />
 
       <div>
-        <button type="submit" onClick={handleSubmit} disabled={submitting}>Get Vacancies</button>
-        <button type="button" className="clearSkillsBtn" disabled={pristine || submitting} onClick={reset}>
+        <button type="submit" onClick={handleSubmit} disabled={submitting}>
+          Get Vacancies
+        </button>
+        <button
+          type="button"
+          className="clearSkillsBtn"
+          disabled={pristine || submitting}
+          onClick={reset}
+        >
           Clear Skills
         </button>
       </div>
